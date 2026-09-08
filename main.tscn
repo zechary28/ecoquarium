@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://4byhnv6kilmf"]
+
+[ext_resource type="Script" uid="uid://cda6xjnoquqyk" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://t5du27lli0cc" path="res://scenes/aquarium.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c7vri0wck0tsm" path="res://entities/fish/fish.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://b3o428sc2001b" path="res://entities/plants/plant.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bp8fhnw4s034f" path="res://effects/food_effect.tscn" id="4_lquwl"]
+
+[node name="Main" type="Node2D" unique_id=451013774]
+script = ExtResource("1_0xm2m")
+fish_scene = ExtResource("2_h2yge")
+plant_scene = ExtResource("3_1bvp3")
+food_effect_scene = ExtResource("4_lquwl")
+
+[node name="Aquarium" parent="." unique_id=1122799797 instance=ExtResource("1_ig7tw")]
+
+[node name="EffectContainer" type="Node2D" parent="." unique_id=760876588]

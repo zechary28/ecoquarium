@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b3o428sc2001b"]
+
+[ext_resource type="Script" uid="uid://bujngtacxjyax" path="res://entities/plants/plant.gd" id="1_wjyus"]
+[ext_resource type="Texture2D" uid="uid://dud3s7nvf7b8t" path="res://icon.svg" id="2_tvn35"]
+
+[sub_resource type="GDScript" id="GDScript_djlq1"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Plant" type="Node2D" unique_id=694761091]
+script = ExtResource("1_wjyus")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1687864294]
+texture = ExtResource("2_tvn35")
+script = SubResource("GDScript_djlq1")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bldpyrhgf5mls"
-path="res://.godot/imported/cod.png-10bd69211efe87aba5f007ff5473e508.ctex"
+uid="uid://cwco1migupgmm"
+path="res://.godot/imported/Moonscale_Bass.png-55e63500679eccea3b85277a672a9b9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fish/sample/PNG/cod.png"
-dest_files=["res://.godot/imported/cod.png-10bd69211efe87aba5f007ff5473e508.ctex"]
+source_file="res://entities/fish/sample/PNG/Moonscale_Bass.png"
+dest_files=["res://.godot/imported/Moonscale_Bass.png-55e63500679eccea3b85277a672a9b9f.ctex"]
 
 [params]
 

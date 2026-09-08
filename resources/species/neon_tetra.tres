@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FishSpecies" format=3 uid="uid://rogcym70kx1w"]
+
+[ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="1_ortja"]
+[ext_resource type="Texture2D" uid="uid://dlvy8kekhnxfv" path="res://entities/fish/sample/PNG/silverfin_snapper.png" id="2_kk8lc"]
+
+[resource]
+script = ExtResource("1_ortja")
+display_name = "Neon Tetra"
+cost = 1.0
+o2_consumption = 1.0
+food_consumption = 1.0
+co2_production = 1.0
+aesthetic_value = 1.0
+o2_sensitivity = 1.0
+sprite = ExtResource("2_kk8lc")
+metadata/_custom_type_script = "uid://bqoqbv553dpwk"

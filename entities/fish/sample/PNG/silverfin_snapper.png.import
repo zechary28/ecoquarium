@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwco1migupgmm"
-path="res://.godot/imported/Moonscale_Bass.png-227a3cdd106aa350d96de993b4f533fd.ctex"
+uid="uid://dlvy8kekhnxfv"
+path="res://.godot/imported/silverfin_snapper.png-e9d37aaeaec196e849b67ef279f1b5bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fish/sample/PNG/Moonscale_Bass.png"
-dest_files=["res://.godot/imported/Moonscale_Bass.png-227a3cdd106aa350d96de993b4f533fd.ctex"]
+source_file="res://entities/fish/sample/PNG/silverfin_snapper.png"
+dest_files=["res://.godot/imported/silverfin_snapper.png-e9d37aaeaec196e849b67ef279f1b5bc.ctex"]
 
 [params]
 

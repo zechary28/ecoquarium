@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://0qskfuvs4dqc"]
+
+[ext_resource type="Script" uid="uid://duoucfewwdrkm" path="res://ui/select_fish_button.gd" id="1_etf66"]
+
+[node name="SelectFishButton" type="VBoxContainer" unique_id=1642324989]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_etf66")
+
+[node name="LabelName" type="Label" parent="." unique_id=1020835642]
+layout_mode = 2
+
+[node name="LabelPrice" type="Label" parent="." unique_id=778390015]
+layout_mode = 2
+
+[node name="LabelConsumption" type="Label" parent="." unique_id=1619834454]
+layout_mode = 2

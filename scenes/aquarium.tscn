@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://t5du27lli0cc"]
 
-[ext_resource type="Texture2D" uid="uid://d1or0qa4s3uru" path="res://assets/sprites/aquarium_bg.png" id="1_ch40n"]
+[ext_resource type="Script" uid="uid://dh03h2on4bux8" path="res://scenes/aquarium.gd" id="1_u42aw"]
+[ext_resource type="Texture2D" uid="uid://d1or0qa4s3uru" path="res://assets/sprites/aquarium_bg.png" id="2_u42aw"]
 
-[node name="Aquarium" type="Node2D" unique_id=646610122]
+[node name="Aquarium" type="Node2D" unique_id=1122799797]
+script = ExtResource("1_u42aw")
 
-[node name="Background" type="TextureRect" parent="." unique_id=39135753]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_ch40n")
+[node name="TextureRect" type="TextureRect" parent="." unique_id=276203812]
+offset_right = 1156.0
+offset_bottom = 652.0
+texture = ExtResource("2_u42aw")
+stretch_mode = 4
+
+[node name="Timer" type="Timer" parent="." unique_id=998830915]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
