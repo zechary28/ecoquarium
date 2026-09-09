@@ -27,12 +27,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	#else:
 		#_drop_food(event.position)
 	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
-		_drop_food(event.position)
-		print("dropping food")
+		#_drop_food(event.position)
+		#print("dropping food")
+		_place_plant(event.position)
 	elif (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
 		_place_fish(event.position)
 
-func _make_placeholder_species() -> FishSpecies:
+func _make_placeholder_fishspecies() -> FishSpecies:
 	var species := FishSpecies.new()
 	species.o2_consumption = 2
 	species.food_consumption = 1
@@ -40,15 +41,31 @@ func _make_placeholder_species() -> FishSpecies:
 	species.aesthetic_value = 5
 	return species
 
+func _make_placeholder_plantspecies() -> PlantSpecies:
+	var species := PlantSpecies.new()
+	species.co2_consumption = 2
+	species.o2_production = 2
+	return species
+
 func _place_fish(pos: Vector2) -> void:
 	#if not Aquarium._updateMoney(pending_fish.cost):
 		#return
 	var fish := fish_scene.instantiate()
-	fish.species = _make_placeholder_species()
+	fish.species = _make_placeholder_fishspecies()
 	#fish.species = pending_fish
 	fish.position = pos
 	$EntityContainer.add_child(fish)
-	pending_fish = null
+	#pending_fish = null
+
+func _place_plant(pos: Vector2) -> void:
+	#if not Aquarium._updateMoney(pending_fish.cost):
+		#return
+	var plant := plant_scene.instantiate()
+	plant.species = _make_placeholder_plantspecies()
+	#fish.species = pending_fish
+	plant.position = pos
+	$EntityContainer.add_child(plant)
+	#pending_fish = null
 
 func _drop_food(pos: Vector2) -> void:
 	Aquarium._updateFood(5.0)

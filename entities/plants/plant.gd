@@ -1,14 +1,14 @@
 extends Node2D
+
+class_name Plant
  
 @export var species: PlantSpecies
- 
-@onready var sprite: Sprite2D = $Sprite2D
  
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("plants")
 	if species and species.sprite:
-		sprite.texture = species.sprite
+		$Sprite2D.texture = species.sprite
 
 func get_contribution(current_light: int, current_co2: float) -> Dictionary:
 	if species == null:
