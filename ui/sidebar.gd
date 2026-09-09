@@ -1,12 +1,19 @@
+signal fish_purchase_requested
+
 func _ready() -> void:
-	for button in $ShopPanel.get_children():
-		if button.has_signal("purchase_requested"):
-			button.purchase_requested.connect(_on_purchase_requested)
+	#for button in $ShopPanel.get_children():
+		#if button.has_signal("purchase_requested"):
+			#button.purchase_requested.connect(_on_purchase_requested)
+	Aquarium.stats_changed.connect(_on_stats_changed)
+	Aquarium.cash_changed.connect(_on_cash_changed)
 
 func _on_purchase_requested(species: FishSpecies) -> void:
 	fish_purchase_requested.emit(species)
 
 func _on_stats_changed() -> void:
-	o2_bar.value = Aquarium.o2
-	co2_bar.value = Aquarium.co2
-	food_bar.value = Aquarium.food
+	$ProgressBarO2.value = Aquarium.O2Level
+	$ProgressBarCO2.value = Aquarium.CO2Level
+	$ProgressBarFood.value = Aquarium.FoodLevel
+
+func _on_cash_changed() -> void:
+	$LabelMoney.value = Aquarium.Money

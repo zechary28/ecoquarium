@@ -37,5 +37,8 @@ layout_mode = 2
 [node name="ShopPanel" type="Panel" parent="." unique_id=794071471]
 layout_mode = 2
 
+[node name="LabelMoney" type="Label" parent="." unique_id=1915194949]
+layout_mode = 2
+
 [connection signal="pressed" from="LightBar/ButtonDown" to="LightBar" method="_on_button_down_pressed"]
 [connection signal="pressed" from="LightBar/ButtonUp" to="LightBar" method="_on_button_up_pressed"]
