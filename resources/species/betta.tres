@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="1_3sceu"]
 [ext_resource type="Texture2D" uid="uid://bjjeq486h4du3" path="res://entities/fish/used/NUSLIB BETTA.png" id="2_iobf6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iobf6"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(256, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8rxa"]
 atlas = ExtResource("2_iobf6")
 region = Rect2(0, 0, 64, 64)
@@ -29,6 +33,14 @@ region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iobf6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iobf6")
+}],
+"loop": 0,
+"name": &"dead",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w8rxa")
@@ -76,7 +88,6 @@ o2_consumption = 1
 food_consumption = 1
 co2_production = 1
 aesthetic_value = 1
-o2_sensitivity = 1.0
 sprite = ExtResource("2_iobf6")
 sprite_frames = SubResource("SpriteFrames_iobf6")
 metadata/_custom_type_script = "uid://bqoqbv553dpwk"
