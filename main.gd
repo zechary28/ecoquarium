@@ -3,6 +3,8 @@ extends Node2D
 @export var fish_scene: PackedScene
 @export var plant_scene: PackedScene
 @export var food_effect_scene: PackedScene
+@export var sprite_frames: SpriteFrames
+@export var available_species: Array[FishSpecies] = []
 
 var pending_fish: FishSpecies = null
 
@@ -38,17 +40,21 @@ func _make_placeholder_species() -> FishSpecies:
 	species.food_consumption = 1
 	species.co2_production = 2
 	species.aesthetic_value = 5
+	species.sprite_frames = sprite_frames
 	return species
 
+var pending_species = preload("res://resources/species/angelfish.tres")
 func _place_fish(pos: Vector2) -> void:
 	#if not Aquarium._updateMoney(pending_fish.cost):
 		#return
 	var fish := fish_scene.instantiate()
-	fish.species = _make_placeholder_species()
-	#fish.species = pending_fish
-	fish.position = pos
+	#fish.species = _make_placeholder_species()
+	var chosen_species : FishSpecies = available_species.pick_random()
+	fish.species = chosen_species
 	$EntityContainer.add_child(fish)
-	pending_fish = null
+	fish.global_position = pos
+	fish.reset_target()
+	# pending_fish = null
 
 func _drop_food(pos: Vector2) -> void:
 	Aquarium._updateFood(5.0)

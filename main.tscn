@@ -4,13 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://c7vri0wck0tsm" path="res://entities/fish/fish.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b3o428sc2001b" path="res://entities/plants/plant.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bp8fhnw4s034f" path="res://effects/food_effect.tscn" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="5_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ci40ciwsctwyq" path="res://scenes/entity_container.tscn" id="6_7mycd"]
+[ext_resource type="Resource" uid="uid://bn2ilvf5cl6db" path="res://resources/species/angelfish.tres" id="6_efxa6"]
+[ext_resource type="Resource" uid="uid://bn3wep5tuajms" path="res://resources/species/betta.tres" id="7_dg77c"]
+[ext_resource type="Resource" uid="uid://1oxfinnia37g" path="res://resources/species/clownfish.tres" id="8_ycdy4"]
+[ext_resource type="Resource" uid="uid://rogcym70kx1w" path="res://resources/species/neon_tetra.tres" id="9_w48qg"]
 
 [node name="Main" type="Node2D" unique_id=451013774]
 script = ExtResource("1_0xm2m")
 fish_scene = ExtResource("2_h2yge")
 plant_scene = ExtResource("3_1bvp3")
 food_effect_scene = ExtResource("4_lquwl")
+available_species = Array[ExtResource("5_4c57u")]([ExtResource("6_efxa6"), ExtResource("7_dg77c"), ExtResource("8_ycdy4"), ExtResource("9_w48qg")])
 
 [node name="EffectContainer" type="Node2D" parent="." unique_id=760876588]
 

@@ -10,3 +10,4 @@ class_name FishSpecies
 @export var aesthetic_value: int
 @export var o2_sensitivity: float  # how fast health drops when O2 is low
 @export var sprite: Texture2D
+@export var sprite_frames: SpriteFrames
