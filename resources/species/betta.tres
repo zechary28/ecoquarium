@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="FishSpecies" format=3 uid="uid://bn3wep5tuajms"]
+
+[ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="1_3sceu"]
+[ext_resource type="Texture2D" uid="uid://bjjeq486h4du3" path="res://entities/fish/used/NUSLIB BETTA.png" id="2_iobf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8rxa"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kltoq"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cino4"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oy1m"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk6l8"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oi2r"]
+atlas = ExtResource("2_iobf6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iobf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8rxa")
+}],
+"loop": 1,
+"name": &"default_left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kltoq")
+}],
+"loop": 1,
+"name": &"default_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cino4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8oy1m")
+}],
+"loop": 1,
+"name": &"swim_left",
+"speed": 3.7
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk6l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oi2r")
+}],
+"loop": 1,
+"name": &"swim_right",
+"speed": 3.7
+}]
+
+[resource]
+script = ExtResource("1_3sceu")
+display_name = "Betta"
+cost = 1
+o2_consumption = 1
+food_consumption = 1
+co2_production = 1
+aesthetic_value = 1
+o2_sensitivity = 1.0
+sprite = ExtResource("2_iobf6")
+sprite_frames = SubResource("SpriteFrames_iobf6")
+metadata/_custom_type_script = "uid://bqoqbv553dpwk"

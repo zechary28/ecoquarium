@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://gf1s2kmpg1lw"]
+
+[ext_resource type="Script" uid="uid://dh7fihfxxvs6" path="res://ui/species_status_bar.gd" id="1_j5jeb"]
+
+[node name="SpeciesStatusBar" type="Control" unique_id=1831881239]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5jeb")
+
+[node name="ProgressBarO2" type="ProgressBar" parent="." unique_id=523905705]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="ProgressBarFood" type="ProgressBar" parent="." unique_id=1148219502]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
