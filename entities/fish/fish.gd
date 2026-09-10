@@ -34,8 +34,10 @@ func reset_target() -> void:
 	facing_sign = -1 if to_target.x < 0 else 1
 	_update_animation(true)
 
-func get_contribution(current_o2: float, current_food: float) -> Dictionary:
-	if species == null:
+func get_contribution(current_o2: int, current_food: int) -> Dictionary:
+	var unhealthy: bool = current_o2 < species.o2_min or current_food < species.food_min
+	if unhealthy and randf() < species.death_chance_per_tick:
+		queue_free()
 		return {}
 	return {
 		"o2_consumed": species.o2_consumption,
@@ -44,20 +46,10 @@ func get_contribution(current_o2: float, current_food: float) -> Dictionary:
 		"beauty": species.aesthetic_value
 	}
 
-func apply_damage(amount: float) -> void:
-	health -= amount
-	if health <= 0.0:
-		_die()
-
 func _die() -> void:
 	queue_free()
 
 func _process(delta: float) -> void:
-	# Keep health check above returns so it runs continuously
-	if health <= 0.0:
-		_die()
-		return
-
 	# Idle / waiting logic
 	if wait_timer > 0.0:
 		wait_timer -= delta
@@ -121,6 +113,7 @@ func _pick_new_target() -> void:
 	var min_y: float = ceiling_offset
 	var max_y: float = vp.y - ground_offset
 	target_position = Vector2(randf_range(min_x, max_x), randf_range(min_y, max_y))
+
 func _update_animation(is_swimming: bool) -> void:
 	if sprite == null or sprite.sprite_frames == null:
 		return
