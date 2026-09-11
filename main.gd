@@ -12,6 +12,8 @@ const PLANT_MIN_Y := 535.0
 const PLANT_MAX_Y := 580.0
 const PLANT_MIN_X := 40.0
 const PLANT_MAX_X := 1100.0
+const FOOD_COST: float = 2.0
+const FOOD_PER_DROP: float = 10.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -76,7 +78,12 @@ func _place_plant(pos: Vector2) -> void:
 	#pending_fish = null
 
 func _drop_food(pos: Vector2) -> void:
-	Aquarium._updateFood(5.0)
+	if not Aquarium._updateMoney(-FOOD_COST):
+		print("Not enough money for food.")
+		return
+
+	Aquarium._updateFood(FOOD_PER_DROP)
+
 	var effect := food_effect_scene.instantiate()
-	effect.position = pos
 	$EffectContainer.add_child(effect)
+	effect.global_position = pos

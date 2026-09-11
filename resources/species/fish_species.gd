@@ -5,9 +5,9 @@ class_name FishSpecies
 
 @export var display_name: String
 @export var cost: int
-@export var o2_consumption: int
-@export var food_consumption: int
-@export var co2_production: int
+@export var o2_consumption: float
+@export var food_consumption: float
+@export var co2_production: float
 @export var aesthetic_value: int
 @export var o2_min: int = 40
 @export var food_min: int = 20

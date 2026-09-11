@@ -19,7 +19,7 @@ func _ready() -> void:
 	$ProgressBarO2.value = Aquarium.O2Level
 	$ProgressBarCO2.value = Aquarium.CO2Level
 	$ProgressBarFood.value = Aquarium.FoodLevel
-	$LabelMoney.text = "Money: " + str(Aquarium.Money)
+	$LabelMoney.text = "Money: $" + str(int(Aquarium.Money))
 
 func _on_purchase_requested(species: FishSpecies) -> void:
 	fish_purchase_requested.emit(species)
@@ -29,6 +29,7 @@ func _on_stats_changed() -> void:
 	$ProgressBarCO2.value = Aquarium.CO2Level
 	$ProgressBarFood.value = Aquarium.FoodLevel
 	$LabelBeauty.text = "Beauty: " + str(Aquarium.Beauty)
+	$LabelMoney.text = "Money: $" + str(int(Aquarium.Money))
 
-func _on_cash_changed() -> void:
-	$LabelMoney.text = "Money: " + str(Aquarium.Money)
+func _on_cash_changed(new_cash: float) -> void:
+	$LabelMoney.text = "Money: $%d" % int(new_cash)

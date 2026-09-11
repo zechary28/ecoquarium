@@ -1,15 +1,15 @@
 extends Node2D
 
 signal stats_changed
-signal cash_changed(new_cash: int)
+signal cash_changed(new_cash: float)
 
 var lightLevel: int = 3
-var O2Level: int = 50
-var CO2Level: int = 50
-var FoodLevel: int = 0
-var Money: int = 50
+var O2Level: float = 50
+var CO2Level: float = 50
+var FoodLevel: float = 25.0
+var Money: float = 60.0
 var Beauty: int = 0
-const REVENUE_MULTIPLIER: int = 1
+const REVENUE_MULTIPLIER: float = 0.06
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,17 +27,18 @@ func _updateCO2(change: int) -> void:
 	CO2Level += change
 	print("CO2 level changed by %d to: %d" % [change, CO2Level])
 
-func _updateFood(change: int) -> void:
-	FoodLevel += change
-	print("Food level changed by %d to: %d" % [change, FoodLevel])
+func _updateFood(change: float) -> void:
+	FoodLevel = clampf(FoodLevel + change, 0.0, 100.0)
+	print("Food level: %.1f" % FoodLevel)
+	stats_changed.emit()
 
-func _updateMoney(change: int) -> bool:
-	if (Money + change < 0):
+func _updateMoney(change: float) -> bool:
+	if Money + change < 0.0:
 		return false
-	else:
-		Money += change
-		print("Money changed by %d to: %d" % [change, Money])
-		return true
+
+	Money += change
+	cash_changed.emit(Money)
+	return true
 
 func _on_timer_timeout() -> void:
 	print("Timeout")
