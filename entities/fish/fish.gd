@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Fish
 
+signal died(fish: Fish)
+
 @export var species: FishSpecies
 
 @export_group("Movement")
@@ -17,7 +19,6 @@ class_name Fish
 
 var target_position: Vector2 = Vector2.ZERO
 var wait_timer: float = 0.0
-var health: float = 100.0
 var facing_sign: int = 1
 var is_dying: bool = false
 
@@ -35,14 +36,15 @@ func reset_target() -> void:
 	facing_sign = -1 if to_target.x < 0 else 1
 	_update_animation(true)
 
-func get_contribution(current_o2: int, current_food: int) -> Dictionary:
-	var unhealthy: bool = current_o2 < species.o2_min or current_food < species.food_min
+func get_contribution(current_o2: float, current_food: float) -> Dictionary:
 	if is_dying or species == null:
 		return {}
+
+	var unhealthy: bool = current_o2 < species.o2_min or current_food < species.food_min
 	if unhealthy and randf() < species.death_chance_per_tick:
 		_die()
-		# queue_free()
 		return {}
+
 	return {
 		"o2_consumed": species.o2_consumption,
 		"co2_produced": species.co2_production,
@@ -56,6 +58,7 @@ func _die() -> void:
 	is_dying = true
 	set_process(false)
 	remove_from_group("fish")
+	died.emit(self)
 
 	if sprite.sprite_frames and sprite.sprite_frames.has_animation("dead"):
 		sprite.play("dead")

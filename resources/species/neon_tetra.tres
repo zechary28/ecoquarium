@@ -6,11 +6,13 @@
 [resource]
 script = ExtResource("1_ortja")
 display_name = "Neon Tetra"
-cost = 1.0
-o2_consumption = 1.0
-food_consumption = 1.0
-co2_production = 1.0
-aesthetic_value = 1.0
-o2_sensitivity = 1.0
+cost = 18
+o2_consumption = 0.12
+food_consumption = 0.04
+co2_production = 0.12
+aesthetic_value = 3
+o2_min = 28.0
+food_min = 5.0
+death_chance_per_tick = 0.008
 sprite = ExtResource("2_kk8lc")
 metadata/_custom_type_script = "uid://bqoqbv553dpwk"
