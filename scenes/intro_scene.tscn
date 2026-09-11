@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://cj5dm0hwtt8gq"]
+
+[ext_resource type="Script" uid="uid://ct3sxptttsr74" path="res://scenes/intro_scene.gd" id="1_8wqor"]
+[ext_resource type="Texture2D" uid="uid://tiqvlraqvjhe" path="res://assets/sprites/aquarium_greyscaled.png" id="2_0f06d"]
+[ext_resource type="Texture2D" uid="uid://igyuycah15es" path="res://assets/sprites/NUSLIB_LETTER-sheet.png" id="3_01j2m"]
+[ext_resource type="FontFile" uid="uid://d2ylletmxnkkf" path="res://assets/PixeltaRegular-lxoDw.ttf" id="4_f164h"]
+[ext_resource type="Texture2D" uid="uid://ckna2a4ydiw88" path="res://assets/sprites/cover pixel 6pix.png" id="5_t82ha"]
+[ext_resource type="Script" uid="uid://0co1vbyy5xiw" path="res://texture_button.gd" id="6_qt0h2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avjx1"]
+
+[sub_resource type="Shader" id="Shader_w2ebg"]
+code = "shader_type canvas_item;
+
+uniform vec4 outline_color : source_color = vec4(0.933, 0.847, 0.251, 1.0);
+uniform float outline_intensity : hint_range(0.0, 1.0) = 0.0;
+uniform float thickness : hint_range(1.0, 16.0) = 4.0;
+
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	float max_alpha = 0.0;
+
+	for (float r = 1.0; r <= thickness; r += 1.0) {
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(0.0, -ps.y * r)).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(0.0, ps.y * r)).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(-ps.x * r, 0.0)).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(ps.x * r, 0.0)).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(-ps.x * r, -ps.y * r) * 0.707).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(ps.x * r, -ps.y * r) * 0.707).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(-ps.x * r, ps.y * r) * 0.707).a);
+		max_alpha = max(max_alpha, texture(TEXTURE, UV + vec2(ps.x * r, ps.y * r) * 0.707).a);
+	}
+
+	float is_edge = max_alpha * (1.0 - col.a);
+	COLOR = mix(col, outline_color, is_edge * outline_intensity);
+	COLOR.a = max(col.a, is_edge * outline_intensity);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b1u3c"]
+shader = SubResource("Shader_w2ebg")
+shader_parameter/outline_color = Color(0.933, 0.847, 0.251, 1)
+shader_parameter/outline_intensity = 1.0
+shader_parameter/thickness = 16.0
+
+[node name="IntroScene" type="Control" unique_id=1279217950]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8wqor")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1672766577]
+modulate = Color(0.84705883, 0.8156863, 0.77254903, 1)
+material = SubResource("ShaderMaterial_avjx1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0f06d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2052795301]
+position = Vector2(349.00003, 318)
+rotation = -0.12391838
+scale = Vector2(1.0644655, 1.0905396)
+texture = ExtResource("3_01j2m")
+
+[node name="Texts" type="Control" parent="." unique_id=1942715000]
+anchors_preset = 0
+offset_left = 29.0
+offset_top = 23.0
+offset_right = 69.0
+offset_bottom = 63.0
+
+[node name="Label" type="Label" parent="Texts" unique_id=948610225]
+layout_mode = 0
+offset_left = 90.00003
+offset_top = 178.00003
+offset_right = 330.00003
+offset_bottom = 206.80646
+rotation = -0.14835298
+theme_override_colors/font_color = Color(0.16862746, 0.101960786, 0.07058824, 1)
+theme_override_fonts/font = ExtResource("4_f164h")
+theme_override_font_sizes/font_size = 25
+text = "My Dearest Granddaughter, "
+
+[node name="Label2" type="Label" parent="Texts" unique_id=492112980]
+layout_mode = 0
+offset_left = 96.00001
+offset_top = 219.0
+offset_right = 457.72766
+offset_bottom = 316.0
+rotation = -0.14835298
+theme_override_colors/font_color = Color(0.23921569, 0.14901961, 0.09803922, 1)
+theme_override_fonts/font = ExtResource("4_f164h")
+theme_override_font_sizes/font_size = 20
+text = "I am glad this message has found you. That means you have found my old aquarium! "
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="Texts" unique_id=346242483]
+layout_mode = 0
+offset_left = 103.00003
+offset_top = 278.00006
+offset_right = 522.71765
+offset_bottom = 350.00006
+rotation = -0.14835298
+theme_override_colors/font_color = Color(0.16862746, 0.101960786, 0.07058824, 1)
+theme_override_fonts/font = ExtResource("4_f164h")
+theme_override_font_sizes/font_size = 20
+text = "Since I won the FGA International Guppy Show in Birmingham, this aquarium has been left abandoned, patiently waiting for its next owner. "
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="Texts" unique_id=814073335]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 363.0
+offset_right = 537.71765
+offset_bottom = 435.0
+rotation = -0.14835298
+theme_override_colors/font_color = Color(0.16862746, 0.101960786, 0.07058824, 1)
+theme_override_fonts/font = ExtResource("4_f164h")
+theme_override_font_sizes/font_size = 20
+text = "If you would want to take on this task of reviving my old aquarium, you may find this journal useful. Know that I will love you, and just keep swimming!"
+autowrap_mode = 3
+
+[node name="Label6" type="Label" parent="Texts" unique_id=1848481542]
+layout_mode = 0
+offset_left = 357.99988
+offset_top = 408.0
+offset_right = 537.89136
+offset_bottom = 467.0
+rotation = -0.14835298
+theme_override_colors/font_color = Color(0.16862746, 0.101960786, 0.07058824, 1)
+theme_override_fonts/font = ExtResource("4_f164h")
+theme_override_font_sizes/font_size = 25
+text = "Your Grandpops"
+autowrap_mode = 3
+
+[node name="Journal" type="TextureButton" parent="." unique_id=992775970]
+material = SubResource("ShaderMaterial_b1u3c")
+layout_mode = 0
+offset_left = 731.0
+offset_top = 71.0
+offset_right = 1065.8372
+offset_bottom = 535.38556
+rotation = 0.13264503
+texture_normal = ExtResource("5_t82ha")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("6_qt0h2")

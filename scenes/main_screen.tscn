@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c50luqodnvrff"]
+
+[ext_resource type="Script" uid="uid://fct6fjydjsyp" path="res://scenes/main_screen.gd" id="1_a46j4"]
+[ext_resource type="Texture2D" uid="uid://bkwxkcwwjne2u" path="res://assets/sprites/start_background.png" id="2_23dc1"]
+[ext_resource type="Texture2D" uid="uid://cujqnwxj2c8gf" path="res://assets/sprites/ecoquarium_logo-v2.png" id="3_il54y"]
+[ext_resource type="Texture2D" uid="uid://fqk1aiigwpoc" path="res://assets/sprites/start_button_normal.png" id="4_4takm"]
+[ext_resource type="Texture2D" uid="uid://p0v6cjj2avta" path="res://assets/sprites/start_button_pressed.png" id="5_pn685"]
+[ext_resource type="Texture2D" uid="uid://b68ih085mxtw8" path="res://assets/sprites/start_button_hover.png" id="6_u38ol"]
+
+[node name="MainScreen" type="Control" unique_id=1999782117]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a46j4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=589117555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_23dc1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=963743410]
+position = Vector2(590.00006, 122.00001)
+scale = Vector2(1.9651443, 2.4600694)
+texture = ExtResource("3_il54y")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1746981331]
+texture_filter = 1
+layout_mode = 0
+offset_left = 423.0
+offset_top = 431.0
+offset_right = 731.0
+offset_bottom = 525.0
+texture_normal = ExtResource("4_4takm")
+texture_pressed = ExtResource("5_pn685")
+texture_hover = ExtResource("6_u38ol")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

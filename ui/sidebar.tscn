@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ccivj1m5ow8sg"]
+
+[ext_resource type="Script" uid="uid://buj2qpuey3ks3" path="res://ui/sidebar.gd" id="1_iqt6p"]
+[ext_resource type="Script" uid="uid://bsv4p0808adjr" path="res://ui/light_bar.gd" id="2_rx5q4"]
+
+[node name="Sidebar" type="VBoxContainer" unique_id=1907890047]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iqt6p")
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1710323326]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="LightBar" type="HBoxContainer" parent="." unique_id=1216593003]
+layout_mode = 2
+alignment = 1
+script = ExtResource("2_rx5q4")
+
+[node name="ButtonDown" type="Button" parent="LightBar" unique_id=2131144843]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LightBar" unique_id=1954008838]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="ButtonUp" type="Button" parent="LightBar" unique_id=1913447378]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ProgressBarO2" type="ProgressBar" parent="." unique_id=823373555]
+layout_mode = 2
+
+[node name="ProgressBarCO2" type="ProgressBar" parent="." unique_id=1176152822]
+layout_mode = 2
+
+[node name="ProgressBarFood" type="ProgressBar" parent="." unique_id=1346856902]
+layout_mode = 2
+
+[node name="ShopPanel" type="VBoxContainer" parent="." unique_id=491726422]
+layout_mode = 2
+
+[node name="LabelMoney" type="Label" parent="." unique_id=1915194949]
+layout_mode = 2
+
+[node name="LabelBeauty" type="Label" parent="." unique_id=360602010]
+layout_mode = 2
+
+[connection signal="pressed" from="LightBar/ButtonDown" to="LightBar" method="_on_button_down_pressed"]
+[connection signal="pressed" from="LightBar/ButtonUp" to="LightBar" method="_on_button_up_pressed"]
