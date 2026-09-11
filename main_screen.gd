@@ -7,6 +7,7 @@ func _ready() -> void:
 	fade_overlay.modulate.a = 0.0
 
 func _on_texture_button_pressed() -> void:
+	AudioManager.play_ui_click()
 	# Disable the button and block input during transition
 	play_button.disabled = true
 	fade_overlay.mouse_filter = Control.MOUSE_FILTER_STOP

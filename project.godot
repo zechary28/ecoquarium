@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+AudioManager="*res://audio/audio_manager.tscn"
 Aquarium="*uid://t5du27lli0cc"
 
 [rendering]
