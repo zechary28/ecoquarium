@@ -9,6 +9,7 @@ var selected_fish: FishSpecies = null
 const CATALOG := preload("res://resources/species_catalog.tres")
 const SELECT_FISH_BUTTON_SCENE := preload("res://ui/select_fish_button.tscn")
 const SPECIES_STATUS_BAR := preload("res://ui/species_status_bar.tscn")
+@onready var light_modulate: CanvasModulate = $TankView/LightModulate
 
 const PLANT_MIN_Y := 535.0
 const PLANT_MAX_Y := 580.0
@@ -17,6 +18,8 @@ const PLANT_MAX_X := 1100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Aquarium.stats_changed.connect(_update_light_tint)
+	_update_light_tint()
 	#load all available fish species
 	for species in CATALOG.fish_species:
 		var sfb = SELECT_FISH_BUTTON_SCENE.instantiate()
@@ -61,7 +64,7 @@ func _place_fish(pos: Vector2) -> void:
 			return
 		var fish := fish_scene.instantiate()
 		fish.species = selected_fish
-		$EntityContainer.add_child(fish)
+		$TankView/EntityContainer.add_child(fish)
 		fish.global_position = pos
 		fish.reset_target()
 		
@@ -80,11 +83,21 @@ func _place_plant(pos: Vector2) -> void:
 	plant.species = _make_placeholder_plantspecies()
 	#fish.species = pending_fish
 	plant.position = pos
-	$EntityContainer.add_child(plant)
+	$TankView/EntityContainer.add_child(plant)
 	#pending_fish = null
 
 func _drop_food(pos: Vector2) -> void:
 	Aquarium._updateFood(5.0)
 	var effect := food_effect_scene.instantiate()
 	effect.position = pos
-	$EffectContainer.add_child(effect)
+	$TankView/EffectContainer.add_child(effect)
+
+func _update_light_tint() -> void:
+	print("Updating LIGHT")
+	var t := Aquarium.lightLevel / 5.0
+	var brightness: float = clamp(
+		Aquarium.lightLevel / 5.0,
+		0.0,
+		1.0
+	)
+	$TankView/LightModulate.color = Color(brightness, brightness, brightness)
