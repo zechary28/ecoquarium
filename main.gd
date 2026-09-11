@@ -9,7 +9,7 @@ var selected_fish: FishSpecies = null
 const CATALOG := preload("res://resources/species_catalog.tres")
 const SELECT_FISH_BUTTON_SCENE := preload("res://ui/select_fish_button.tscn")
 const PLANT_MIN_Y := 535.0
-const PLANT_MAX_Y := 610.0
+const PLANT_MAX_Y := 580.0
 const PLANT_MIN_X := 40.0
 const PLANT_MAX_X := 1100.0
 
