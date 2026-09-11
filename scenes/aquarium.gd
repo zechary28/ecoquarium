@@ -73,5 +73,5 @@ func _on_timer_timeout() -> void:
 	print("Food level changed by %d to: %d" % [food_delta, FoodLevel])
 
 	Money += total_beauty * REVENUE_MULTIPLIER
-	cash_changed.emit()
+	cash_changed.emit(Money)
 	stats_changed.emit()
