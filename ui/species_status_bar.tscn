@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://gf1s2kmpg1lw"]
+
+[ext_resource type="Script" uid="uid://dh7fihfxxvs6" path="res://ui/species_status_bar.gd" id="1_j5jeb"]
+
+[node name="SpeciesStatusBar" type="VBoxContainer" unique_id=1360324581]
+custom_minimum_size = Vector2(110, 90)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5jeb")
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=408543654]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=1377666464]
+custom_minimum_size = Vector2(110, 25)
+layout_mode = 2
+
+[node name="ProgressBarO2" type="ProgressBar" parent="." unique_id=523905705]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ProgressBarFood" type="ProgressBar" parent="." unique_id=1148219502]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2

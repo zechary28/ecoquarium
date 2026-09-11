@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bp8fhnw4s034f"]
+
+[ext_resource type="Script" uid="uid://c5wjaagyocxyn" path="res://effects/food_effect.gd" id="1_pwued"]
+[ext_resource type="Texture2D" uid="uid://jaec3hj5cx5d" path="res://assets/food/NUSLIB FISHFOOD.png" id="2_pwued"]
+
+[node name="FoodEffect" type="Node2D" unique_id=1801160828]
+script = ExtResource("1_pwued")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=959779355]
+texture = ExtResource("2_pwued")
+
+[node name="Timer" type="Timer" parent="." unique_id=2016478494]
+process_callback = 0
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://4byhnv6kilmf"]
+
+[ext_resource type="Script" uid="uid://cda6xjnoquqyk" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c7vri0wck0tsm" path="res://entities/fish/fish.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://b3o428sc2001b" path="res://entities/plants/plant.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bp8fhnw4s034f" path="res://effects/food_effect.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ci40ciwsctwyq" path="res://scenes/entity_container.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cdqvm26tc1wse" path="res://scenes/sidebar.tscn" id="6_272bh"]
+
+[node name="Main" type="Node2D" unique_id=451013774]
+script = ExtResource("1_0xm2m")
+fish_scene = ExtResource("2_h2yge")
+plant_scene = ExtResource("3_1bvp3")
+food_effect_scene = ExtResource("4_lquwl")
+
+[node name="EffectContainer" type="Node2D" parent="." unique_id=760876588]
+
+[node name="EntityContainer" parent="." unique_id=464139563 instance=ExtResource("6_7mycd")]
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=850596568]
+offset_right = 1149.0
+offset_bottom = 654.0
+accessibility_region = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="Container" unique_id=1408394511]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeciesStatusBars" type="VBoxContainer" parent="Container/MarginContainer2" unique_id=1707065527]
+custom_minimum_size = Vector2(110, 90)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Container" unique_id=137465160]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Container" unique_id=1583922561]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="Sidebar" parent="Container/MarginContainer" unique_id=1907890047 instance=ExtResource("6_272bh")]
+layout_mode = 2

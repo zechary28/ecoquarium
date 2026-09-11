@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="FishSpecies" format=3 uid="uid://bn2ilvf5cl6db"]
+
+[ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="1_1bxp8"]
+[ext_resource type="Texture2D" uid="uid://ch0hdx6ox5rnp" path="res://entities/fish/used/NUSLIB ANGELFISH.png" id="2_vufad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vufad"]
+atlas = ExtResource("2_vufad")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbusn"]
+atlas = ExtResource("2_vufad")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tthhg"]
+atlas = ExtResource("2_vufad")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60b65"]
+atlas = ExtResource("2_vufad")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkqij"]
+atlas = ExtResource("2_vufad")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hooa1"]
+atlas = ExtResource("2_vufad")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p83cs"]
+atlas = ExtResource("2_vufad")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vufad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vufad")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbusn")
+}],
+"loop": 1,
+"name": &"default_left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tthhg")
+}],
+"loop": 1,
+"name": &"default_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60b65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkqij")
+}],
+"loop": 1,
+"name": &"swim_left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hooa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p83cs")
+}],
+"loop": 1,
+"name": &"swim_right",
+"speed": 3.0
+}]
+
+[resource]
+script = ExtResource("1_1bxp8")
+display_name = "Angel Fish"
+cost = 1
+o2_consumption = 1
+food_consumption = 1
+co2_production = 1
+aesthetic_value = 1
+sprite = ExtResource("2_vufad")
+sprite_frames = SubResource("SpriteFrames_vufad")
+metadata/_custom_type_script = "uid://bqoqbv553dpwk"

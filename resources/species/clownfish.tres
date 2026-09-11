@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="FishSpecies" format=3 uid="uid://1oxfinnia37g"]
+
+[ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="1_5xfui"]
+[ext_resource type="Texture2D" uid="uid://lnnt0qc6r4e" path="res://entities/fish/used/NUSLIB CLOWNFISH.png" id="2_o0uxl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0uxl"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uil1y"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rempa"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afcbu"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee62t"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s82r"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqmv0"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o0uxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0uxl")
+}],
+"loop": 0,
+"name": &"dead",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uil1y")
+}],
+"loop": 1,
+"name": &"default_left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rempa")
+}],
+"loop": 1,
+"name": &"default_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afcbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee62t")
+}],
+"loop": 1,
+"name": &"swim_left",
+"speed": 1.4
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s82r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqmv0")
+}],
+"loop": 1,
+"name": &"swim_right",
+"speed": 1.4
+}]
+
+[resource]
+script = ExtResource("1_5xfui")
+display_name = "Clown Fish"
+cost = 1
+o2_consumption = 1
+food_consumption = 1
+co2_production = 1
+aesthetic_value = 1
+sprite = ExtResource("2_o0uxl")
+sprite_frames = SubResource("SpriteFrames_o0uxl")
+metadata/_custom_type_script = "uid://bqoqbv553dpwk"
