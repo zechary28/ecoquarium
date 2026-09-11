@@ -34,8 +34,8 @@ func _on_fish_selected(species: FishSpecies) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
-		#_drop_food(event.position)
-		#print("dropping food")
+		_drop_food(event.position)
+		print("dropping food")
 		_place_plant(event.position)
 	elif (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
 		_place_fish(event.position)
