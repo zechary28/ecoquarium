@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bqoqbv553dpwk" path="res://resources/species/fish_species.gd" id="1_5xfui"]
 [ext_resource type="Texture2D" uid="uid://lnnt0qc6r4e" path="res://entities/fish/used/NUSLIB CLOWNFISH.png" id="2_o0uxl"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0uxl"]
+atlas = ExtResource("2_o0uxl")
+region = Rect2(256, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_uil1y"]
 atlas = ExtResource("2_o0uxl")
 region = Rect2(0, 0, 64, 64)
@@ -29,6 +33,14 @@ region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o0uxl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0uxl")
+}],
+"loop": 0,
+"name": &"dead",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uil1y")

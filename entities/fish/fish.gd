@@ -19,6 +19,7 @@ var target_position: Vector2 = Vector2.ZERO
 var wait_timer: float = 0.0
 var health: float = 100.0
 var facing_sign: int = 1
+var is_dying: bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -36,8 +37,11 @@ func reset_target() -> void:
 
 func get_contribution(current_o2: int, current_food: int) -> Dictionary:
 	var unhealthy: bool = current_o2 < species.o2_min or current_food < species.food_min
+	if is_dying or species == null:
+		return {}
 	if unhealthy and randf() < species.death_chance_per_tick:
-		queue_free()
+		_die()
+		# queue_free()
 		return {}
 	return {
 		"o2_consumed": species.o2_consumption,
@@ -47,7 +51,53 @@ func get_contribution(current_o2: int, current_food: int) -> Dictionary:
 	}
 
 func _die() -> void:
-	queue_free()
+	if is_dying:
+		return
+	is_dying = true
+	set_process(false)
+	remove_from_group("fish")
+
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation("dead"):
+		sprite.play("dead")
+
+	sprite.flip_h = (facing_sign == -1)
+
+	var surface_y: float = ceiling_offset
+	var distance_to_top: float = absf(global_position.y - surface_y)
+
+	# --- RISE SPEED CONFIG ---
+	# Lower divisor = slower rise (approx 25-30 pixels per second)
+	# Min duration raised to 3.0s so even fish near the surface linger
+	var float_duration: float = clampf(distance_to_top / 28.0, 3.0, 6.0)
+
+	# Parallel master tween
+	var tween: Tween = create_tween().set_parallel(true)
+
+	# 1. Level tilt & subtle cold discoloration
+	tween.tween_property(self, "rotation", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(sprite, "modulate", Color(0.65, 0.72, 0.8, 1.0), 1.0)
+
+	# 2. Slow ascent to the surface
+	tween.tween_property(self, "global_position:y", surface_y, float_duration)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	# --- GENTLE SWAY CONFIG ---
+	var sway: Tween = create_tween().set_parallel(false)
+	var cycles: int = 4
+	var step_t: float = float_duration / float(cycles)
+	var sway_offset: float = 2.5 # Reduced from 6.0 down to 2.5 pixels for a subtle drift
+
+	for i in range(cycles):
+		var side: float = 1.0 if i % 2 == 0 else -1.0
+		# Gentle translation back and forth
+		sway.tween_property(self, "global_position:x", global_position.x + (sway_offset * side), step_t)\
+			.set_trans(Tween.TRANS_SINE)
+
+	# 3. Fade out after reaching the surface and resting a moment
+	var cleanup_tween: Tween = create_tween()
+	cleanup_tween.tween_interval(float_duration + 0.8) # Wait for float + brief surface rest
+	cleanup_tween.tween_property(self, "modulate:a", 0.0, 1.2) # Slower, gentler fade
+	cleanup_tween.tween_callback(queue_free)
 
 func _process(delta: float) -> void:
 	# Idle / waiting logic
