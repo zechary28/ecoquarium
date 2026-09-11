@@ -9,9 +9,9 @@ class_name FishSpecies
 @export var food_consumption: float
 @export var co2_production: float
 @export var aesthetic_value: int
-@export var o2_min: int = 40
-@export var food_min: int = 20
-@export var death_chance_per_tick: float = 0.05   # 5%, tune per species
+@export var o2_min: float = 40.0
+@export var food_min: float = 20.0
+@export_range(0.0, 1.0, 0.001) var death_chance_per_tick: float = 0.01
 @export var sprite: Texture2D
 @export var sprite_frames: SpriteFrames
 

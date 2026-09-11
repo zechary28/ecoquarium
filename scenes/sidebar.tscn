@@ -1,0 +1,180 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdqvm26tc1wse"]
+
+[ext_resource type="Script" uid="uid://buj2qpuey3ks3" path="res://ui/sidebar.gd" id="1_iqt6p"]
+[ext_resource type="Script" uid="uid://bsv4p0808adjr" path="res://ui/light_bar.gd" id="2_rx5q4"]
+[ext_resource type="Texture2D" path="res://assets/ui/status/aquarium_status_panel.png" id="3_panel"]
+[ext_resource type="FontFile" path="res://assets/PixeltaRegular-lxoDw.ttf" id="4_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empty"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2"]
+bg_color = Color(0.12, 0.58, 0.54, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.1, 0.055, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_co2"]
+bg_color = Color(0.66, 0.2, 0.11, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.1, 0.055, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_food"]
+bg_color = Color(0.66, 0.4, 0.1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.1, 0.055, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[node name="Sidebar" type="VBoxContainer" unique_id=1907890047]
+custom_minimum_size = Vector2(128, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+script = ExtResource("1_iqt6p")
+
+[node name="TopSpacer" type="Control" parent="." unique_id=1710323326]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LightBar" type="HBoxContainer" parent="." unique_id=1211593003]
+layout_mode = 2
+alignment = 1
+script = ExtResource("2_rx5q4")
+
+[node name="ButtonDown" type="Button" parent="LightBar" unique_id=2131143343]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LightBar" unique_id=195400838]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="ButtonUp" type="Button" parent="LightBar" unique_id=1913447378]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="StatusPanel" type="Control" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="StatusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="StatusPanel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 12.0
+offset_right = 46.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 12
+text = "TANK STATUS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBarO2" type="ProgressBar" parent="StatusPanel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 28.0
+offset_right = 38.0
+offset_bottom = 38.0
+tooltip_text = "Aquarium oxygen"
+mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_empty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o2")
+show_percentage = false
+
+[node name="ProgressBarCO2" type="ProgressBar" parent="StatusPanel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 50.0
+offset_right = 38.0
+offset_bottom = 60.0
+tooltip_text = "Aquarium carbon dioxide"
+mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_empty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_co2")
+show_percentage = false
+
+[node name="ProgressBarFood" type="ProgressBar" parent="StatusPanel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 72.0
+offset_right = 38.0
+offset_bottom = 82.0
+tooltip_text = "Available fish food"
+mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_empty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_food")
+show_percentage = false
+
+[node name="StatusText" type="Label" parent="StatusPanel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 92.0
+offset_right = 40.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 9
+text = "O2 / CO2 / FOOD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopPanel" type="VBoxContainer" parent="." unique_id=491726422]
+layout_mode = 2
+
+[node name="LabelMoney" type="Label" parent="." unique_id=1915194949]
+layout_mode = 2
+
+[node name="LabelBeauty" type="Label" parent="." unique_id=360602010]
+layout_mode = 2
+
+[connection signal="pressed" from="LightBar/ButtonDown" to="LightBar" method="_on_button_down_pressed"]
+[connection signal="pressed" from="LightBar/ButtonUp" to="LightBar" method="_on_button_up_pressed"]

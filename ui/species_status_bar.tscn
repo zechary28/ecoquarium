@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://gf1s2kmpg1lw"]
+
+[ext_resource type="Script" uid="uid://dh7fihfxxvs6" path="res://ui/species_status_bar.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/status/status_bar.png" id="2_bar"]
+[ext_resource type="FontFile" path="res://assets/PixeltaRegular-lxoDw.ttf" id="3_font"]
+
+[node name="SpeciesStatusBar" type="VBoxContainer" unique_id=1360324581]
+custom_minimum_size = Vector2(122, 32)
+theme_override_constants/separation = 1
+script = ExtResource("1_script")
+
+[node name="Label" type="Label" parent="." unique_id=1377666464]
+custom_minimum_size = Vector2(122, 13)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.02, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 11
+vertical_alignment = 1
+
+[node name="Meters" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(122, 12)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="O2Label" type="Label" parent="Meters"]
+custom_minimum_size = Vector2(13, 10)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.91, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "O2"
+vertical_alignment = 1
+
+[node name="ProgressBarO2" type="TextureProgressBar" parent="Meters" unique_id=523905705]
+custom_minimum_size = Vector2(42, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Species oxygen safety"
+texture_under = ExtResource("2_bar")
+texture_progress = ExtResource("2_bar")
+tint_under = Color(0.52, 0.36, 0.23, 1)
+tint_progress = Color(0.25, 0.9, 0.95, 1)
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 3
+stretch_margin_right = 5
+stretch_margin_bottom = 3
+
+[node name="FoodLabel" type="Label" parent="Meters"]
+custom_minimum_size = Vector2(7, 10)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.78, 0.35, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 8
+text = "F"
+vertical_alignment = 1
+
+[node name="ProgressBarFood" type="TextureProgressBar" parent="Meters" unique_id=1148219502]
+custom_minimum_size = Vector2(42, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Species food safety"
+texture_under = ExtResource("2_bar")
+texture_progress = ExtResource("2_bar")
+tint_under = Color(0.52, 0.36, 0.23, 1)
+tint_progress = Color(0.9, 0.7, 0.25, 1)
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 3
+stretch_margin_right = 5
+stretch_margin_bottom = 3

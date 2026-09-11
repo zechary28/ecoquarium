@@ -16,18 +16,18 @@ func _ready() -> void:
 			#button.purchase_requested.connect(_on_purchase_requested)
 	Aquarium.stats_changed.connect(_on_stats_changed)
 	Aquarium.cash_changed.connect(_on_cash_changed)
-	$ProgressBarO2.value = Aquarium.O2Level
-	$ProgressBarCO2.value = Aquarium.CO2Level
-	$ProgressBarFood.value = Aquarium.FoodLevel
+	$StatusPanel/ProgressBarO2.value = Aquarium.O2Level
+	$StatusPanel/ProgressBarCO2.value = Aquarium.CO2Level
+	$StatusPanel/ProgressBarFood.value = Aquarium.FoodLevel
 	$LabelMoney.text = "Money: $" + str(int(Aquarium.Money))
 
 func _on_purchase_requested(species: FishSpecies) -> void:
 	fish_purchase_requested.emit(species)
 
 func _on_stats_changed() -> void:
-	$ProgressBarO2.value = Aquarium.O2Level
-	$ProgressBarCO2.value = Aquarium.CO2Level
-	$ProgressBarFood.value = Aquarium.FoodLevel
+	$StatusPanel/ProgressBarO2.value = Aquarium.O2Level
+	$StatusPanel/ProgressBarCO2.value = Aquarium.CO2Level
+	$StatusPanel/ProgressBarFood.value = Aquarium.FoodLevel
 	$LabelBeauty.text = "Beauty: " + str(Aquarium.Beauty)
 	$LabelMoney.text = "Money: $" + str(int(Aquarium.Money))
 

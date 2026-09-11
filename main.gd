@@ -12,25 +12,24 @@ const CATALOG := preload("res://resources/species_catalog.tres")
 const SELECT_FISH_BUTTON_SCENE := preload("res://ui/select_fish_button.tscn")
 const SELECT_PLANT_BUTTON_SCENE := preload("res://ui/select_plant_button.tscn")
 const SPECIES_STATUS_BAR := preload("res://ui/species_status_bar.tscn")
-const PLANT_SPRITESHEET := preload("res://entities/plants/used/NUSLIB PLANTS.png")
 
 const PLANT_MIN_Y := 535.0
 const PLANT_MAX_Y := 580.0
 const PLANT_MIN_X := 40.0
 const PLANT_MAX_X := 1100.0
-const FOOD_COST: float = 2.0
-const FOOD_PER_DROP: float = 10.0
+const FOOD_COST: float = 3.0
+const FOOD_PER_DROP: float = 8.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	shop_selection_group.allow_unpress = true
 
-	var plant_species := _make_placeholder_plantspecies()
-	var plant_button := SELECT_PLANT_BUTTON_SCENE.instantiate()
-	plant_button.species = plant_species
-	plant_button.get_node("IconButton").button_group = shop_selection_group
-	plant_button.plant_selection_changed.connect(_on_plant_selection_changed)
-	$Container/MarginContainer/Sidebar/ShopPanel.add_child(plant_button)
+	for species in CATALOG.plant_species:
+		var plant_button := SELECT_PLANT_BUTTON_SCENE.instantiate()
+		plant_button.species = species
+		plant_button.get_node("IconButton").button_group = shop_selection_group
+		plant_button.plant_selection_changed.connect(_on_plant_selection_changed)
+		$Container/MarginContainer/Sidebar/ShopPanel.add_child(plant_button)
 
 	#load all available fish species
 	for species in CATALOG.fish_species:
@@ -40,11 +39,7 @@ func _ready() -> void:
 		sfb.fish_selection_changed.connect(_on_fish_selection_changed)
 		$Container/MarginContainer/Sidebar/ShopPanel.add_child(sfb)
 
-	#create all status bars
-	for species in CATALOG.fish_species:
-		var ssb = SPECIES_STATUS_BAR.instantiate()
-		ssb.species = species
-		$Container/MarginContainer2/SpeciesStatusBars.add_child(ssb)
+	_refresh_species_status_bars()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -82,14 +77,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif selected_plant != null:
 			_place_plant(event.position)
 
-func _make_placeholder_plantspecies() -> PlantSpecies:
-	var species := PlantSpecies.new()
-	species.display_name = "Aquarium Plant"
-	species.co2_consumption = 2
-	species.o2_production = 2
-	species.sprite = PLANT_SPRITESHEET
-	return species
-
 func _place_fish(pos: Vector2) -> void:
 	if selected_fish:
 		if not Aquarium._updateMoney(-selected_fish.cost):
@@ -97,9 +84,36 @@ func _place_fish(pos: Vector2) -> void:
 			return
 		var fish := fish_scene.instantiate()
 		fish.species = selected_fish
+		fish.died.connect(_on_fish_died)
 		$EntityContainer.add_child(fish)
 		fish.global_position = pos
 		fish.reset_target()
+		_refresh_species_status_bars()
+
+
+func _on_fish_died(_fish: Fish) -> void:
+	# The fish removes itself from the active group before emitting this signal.
+	call_deferred("_refresh_species_status_bars")
+
+
+func _refresh_species_status_bars() -> void:
+	var counts: Dictionary = {}
+	for fish in get_tree().get_nodes_in_group("fish"):
+		if fish is Fish and fish.species != null:
+			counts[fish.species] = counts.get(fish.species, 0) + 1
+
+	var status_list := $Container/MarginContainer2/SpeciesStatusBars
+	for row in status_list.get_children():
+		row.queue_free()
+
+	# Catalog order keeps the list stable as fish are added and removed.
+	for species in CATALOG.fish_species:
+		if not counts.has(species):
+			continue
+		var status_row := SPECIES_STATUS_BAR.instantiate()
+		status_row.species = species
+		status_row.fish_count = counts[species]
+		status_list.add_child(status_row)
 
 func _place_plant(pos: Vector2) -> void:
 	if selected_plant == null:

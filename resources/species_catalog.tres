@@ -6,7 +6,9 @@
 [ext_resource type="Resource" uid="uid://bn3wep5tuajms" path="res://resources/species/betta.tres" id="4_k3xs8"]
 [ext_resource type="Script" uid="uid://6kelxv7gk0ua" path="res://resources/species/plant_species.gd" id="5_dbnad"]
 [ext_resource type="Script" uid="uid://c48ornhdu7lrw" path="res://resources/species_catalog.gd" id="6_i334x"]
+[ext_resource type="Resource" path="res://resources/species/aquarium_plant.tres" id="7_plant"]
 
 [resource]
 script = ExtResource("6_i334x")
 fish_species = Array[ExtResource("1_d403k")]([ExtResource("2_3ekbi"), ExtResource("3_n64jh"), ExtResource("4_k3xs8")])
+plant_species = Array[ExtResource("5_dbnad")]([ExtResource("7_plant")])

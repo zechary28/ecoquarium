@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlantSpecies" format=3]
+
+[ext_resource type="Script" path="res://resources/species/plant_species.gd" id="1_plant"]
+[ext_resource type="Texture2D" uid="uid://brwsq8utque0m" path="res://entities/plants/used/NUSLIB PLANTS.png" id="2_sprite"]
+
+[resource]
+script = ExtResource("1_plant")
+display_name = "Aquarium Plant"
+cost = 12.0
+co2_consumption = 0.55
+o2_production = 0.55
+sprite = ExtResource("2_sprite")

@@ -1,6 +1,9 @@
 extends Node2D
 
 class_name Plant
+
+const LIGHT_MULTIPLIERS := [0.0, 0.45, 0.75, 1.0, 1.15, 1.30]
+const CO2_FOR_FULL_OUTPUT: float = 25.0
  
 @export var species: PlantSpecies
 
@@ -19,9 +22,11 @@ func _ready() -> void:
 func get_contribution(current_light: int, current_co2: float) -> Dictionary:
 	if species == null:
 		return {}
-	var light_factor := float(current_light)
+
+	var light_factor: float = LIGHT_MULTIPLIERS[clampi(current_light, 0, 5)]
+	var co2_factor: float = clampf(current_co2 / CO2_FOR_FULL_OUTPUT, 0.0, 1.0)
 	return {
-		"o2_produced": species.o2_production * light_factor,
-		"co2_consumed": species.co2_consumption * light_factor
+		"o2_produced": species.o2_production * light_factor * co2_factor,
+		"co2_consumed": species.co2_consumption * light_factor * co2_factor
 	}
  

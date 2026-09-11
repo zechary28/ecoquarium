@@ -19,13 +19,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _updateO2(change: int) -> void:
+func _updateO2(change: float) -> void:
 	O2Level += change
-	print("O2 level changed by %d to: %d" % [change, O2Level])
+	print("O2 level changed by %.2f to: %.2f" % [change, O2Level])
 
-func _updateCO2(change: int) -> void:
+func _updateCO2(change: float) -> void:
 	CO2Level += change
-	print("CO2 level changed by %d to: %d" % [change, CO2Level])
+	print("CO2 level changed by %.2f to: %.2f" % [change, CO2Level])
 
 func _updateFood(change: float) -> void:
 	FoodLevel = clampf(FoodLevel + change, 0.0, 100.0)
@@ -42,9 +42,9 @@ func _updateMoney(change: float) -> bool:
 
 func _on_timer_timeout() -> void:
 	print("Timeout")
-	var o2_delta := 0
-	var co2_delta := 0
-	var food_delta := 0
+	var o2_delta := 0.0
+	var co2_delta := 0.0
+	var food_delta := 0.0
 	var total_beauty := 0
  
 	# Every plant, wherever it's parented, as long as it's tagged "plants".
@@ -68,9 +68,9 @@ func _on_timer_timeout() -> void:
 	CO2Level = clampf(CO2Level + co2_delta, 0, 100)
 	FoodLevel = clampf(FoodLevel + food_delta, 0, 100)
 	Beauty = total_beauty
-	print("O2 level changed by %d to: %d" % [o2_delta, O2Level])
-	print("CO2 level changed by %d to: %d" % [co2_delta, CO2Level])
-	print("Food level changed by %d to: %d" % [food_delta, FoodLevel])
+	print("O2 level changed by %.2f to: %.2f" % [o2_delta, O2Level])
+	print("CO2 level changed by %.2f to: %.2f" % [co2_delta, CO2Level])
+	print("Food level changed by %.2f to: %.2f" % [food_delta, FoodLevel])
 
 	Money += total_beauty * REVENUE_MULTIPLIER
 	cash_changed.emit(Money)
