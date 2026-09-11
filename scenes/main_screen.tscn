@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://brcy5bbfehsjc"]
+[gd_scene format=3 uid="uid://nv51emakns47"]
 
 [ext_resource type="Script" uid="uid://fct6fjydjsyp" path="res://scenes/main_screen.gd" id="1_a46j4"]
 [ext_resource type="Texture2D" uid="uid://bkwxkcwwjne2u" path="res://assets/sprites/start_background.png" id="2_23dc1"]
@@ -26,17 +26,17 @@ grow_vertical = 2
 texture = ExtResource("2_23dc1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=963743410]
-position = Vector2(590.00006, 122.00001)
-scale = Vector2(1.9651443, 2.4600694)
+position = Vector2(294, 67)
+scale = Vector2(1.3, 1.5)
 texture = ExtResource("3_il54y")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1746981331]
 texture_filter = 1
 layout_mode = 0
-offset_left = 423.0
-offset_top = 431.0
-offset_right = 731.0
-offset_bottom = 525.0
+offset_left = 126.0
+offset_top = 108.0
+offset_right = 446.0
+offset_bottom = 204.0
 texture_normal = ExtResource("4_4takm")
 texture_pressed = ExtResource("5_pn685")
 texture_hover = ExtResource("6_u38ol")

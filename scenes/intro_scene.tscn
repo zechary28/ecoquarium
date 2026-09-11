@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cj5dm0hwtt8gq"]
+[gd_scene format=3 uid="uid://uighmyd1l3wj"]
 
 [ext_resource type="Script" uid="uid://ct3sxptttsr74" path="res://scenes/intro_scene.gd" id="1_8wqor"]
 [ext_resource type="Texture2D" uid="uid://tiqvlraqvjhe" path="res://assets/sprites/aquarium_greyscaled.png" id="2_0f06d"]
@@ -143,10 +143,10 @@ autowrap_mode = 3
 [node name="Journal" type="TextureButton" parent="." unique_id=992775970]
 material = SubResource("ShaderMaterial_b1u3c")
 layout_mode = 0
-offset_left = 731.0
-offset_top = 71.0
-offset_right = 1065.8372
-offset_bottom = 535.38556
+offset_left = 694.00006
+offset_top = 73.999985
+offset_right = 1028.8372
+offset_bottom = 538.38556
 rotation = 0.13264503
 texture_normal = ExtResource("5_t82ha")
 ignore_texture_size = true
