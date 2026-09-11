@@ -8,6 +8,10 @@ extends Node2D
 var selected_fish: FishSpecies = null
 const CATALOG := preload("res://resources/species_catalog.tres")
 const SELECT_FISH_BUTTON_SCENE := preload("res://ui/select_fish_button.tscn")
+const PLANT_MIN_Y := 535.0
+const PLANT_MAX_Y := 610.0
+const PLANT_MIN_X := 40.0
+const PLANT_MAX_X := 1100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,18 +48,26 @@ func _make_placeholder_plantspecies() -> PlantSpecies:
 
 func _place_fish(pos: Vector2) -> void:
 	if selected_fish:
-		#if not Aquarium._updateMoney(pending_fish.cost):
-			#return
+		if not Aquarium._updateMoney(-selected_fish.cost):
+			
+			return
 		var fish := fish_scene.instantiate()
-		# TODO CHANGE TO SELECTED FISH
 		fish.species = selected_fish
 		$EntityContainer.add_child(fish)
 		fish.global_position = pos
 		fish.reset_target()
+		
 
 func _place_plant(pos: Vector2) -> void:
 	#if not Aquarium._updateMoney(pending_fish.cost):
 		#return
+	if pos.x < PLANT_MIN_X \
+			or pos.x > PLANT_MAX_X \
+			or pos.y < PLANT_MIN_Y \
+			or pos.y > PLANT_MAX_Y:
+		print("Plants can only be placed in the substrate.")
+		return
+		
 	var plant := plant_scene.instantiate()
 	plant.species = _make_placeholder_plantspecies()
 	#fish.species = pending_fish

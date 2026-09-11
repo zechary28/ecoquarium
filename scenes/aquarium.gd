@@ -1,7 +1,7 @@
 extends Node2D
 
 signal stats_changed
-signal cash_changed(new_cash: float)
+signal cash_changed(new_cash: int)
 
 var lightLevel: int = 3
 var O2Level: int = 50
@@ -70,5 +70,5 @@ func _on_timer_timeout() -> void:
 	#score = total_beauty
 
 	#Money += score * REVENUE_MULTIPLIER * TICK_INTERVAL
-	#cash_changed.emit(cash)
+	cash_changed.emit()
 	stats_changed.emit()
