@@ -6,9 +6,13 @@ extends Node2D
 @export var sprite_frames: SpriteFrames
 
 var selected_fish: FishSpecies = null
+var selected_plant: PlantSpecies = null
+var shop_selection_group := ButtonGroup.new()
 const CATALOG := preload("res://resources/species_catalog.tres")
 const SELECT_FISH_BUTTON_SCENE := preload("res://ui/select_fish_button.tscn")
+const SELECT_PLANT_BUTTON_SCENE := preload("res://ui/select_plant_button.tscn")
 const SPECIES_STATUS_BAR := preload("res://ui/species_status_bar.tscn")
+const PLANT_SPRITESHEET := preload("res://entities/plants/used/NUSLIB PLANTS.png")
 
 const PLANT_MIN_Y := 535.0
 const PLANT_MAX_Y := 580.0
@@ -19,11 +23,21 @@ const FOOD_PER_DROP: float = 10.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	shop_selection_group.allow_unpress = true
+
+	var plant_species := _make_placeholder_plantspecies()
+	var plant_button := SELECT_PLANT_BUTTON_SCENE.instantiate()
+	plant_button.species = plant_species
+	plant_button.get_node("IconButton").button_group = shop_selection_group
+	plant_button.plant_selection_changed.connect(_on_plant_selection_changed)
+	$Container/MarginContainer/Sidebar/ShopPanel.add_child(plant_button)
+
 	#load all available fish species
 	for species in CATALOG.fish_species:
 		var sfb = SELECT_FISH_BUTTON_SCENE.instantiate()
 		sfb.species = species
-		sfb.fish_selected.connect(_on_fish_selected)
+		sfb.get_node("IconButton").button_group = shop_selection_group
+		sfb.fish_selection_changed.connect(_on_fish_selection_changed)
 		$Container/MarginContainer/Sidebar/ShopPanel.add_child(sfb)
 
 	#create all status bars
@@ -38,52 +52,75 @@ func _process(delta: float) -> void:
 
 # TODO CONNECT SELECT FISH
 # called by the sidebar's fish_purchase_requested signal
-func _on_fish_selected(species: FishSpecies) -> void:
-	selected_fish = species  # don't spend yet — wait for placement
-	print("set selected fish")
+func _on_fish_selection_changed(species: FishSpecies, is_selected: bool) -> void:
+	if is_selected:
+		selected_fish = species
+		selected_plant = null
+	elif selected_fish == species:
+		selected_fish = null
+
+
+func _on_plant_selection_changed(species: PlantSpecies, is_selected: bool) -> void:
+	if is_selected:
+		selected_plant = species
+		selected_fish = null
+	elif selected_plant == species:
+		selected_plant = null
+
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+	if not event is InputEventMouseButton or not event.pressed:
+		return
+
+	if event.button_index == MOUSE_BUTTON_RIGHT:
 		_drop_food(event.position)
-		print("dropping food")
-		_place_plant(event.position)
-	elif (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
-		_place_fish(event.position)
+		return
+
+	if event.button_index == MOUSE_BUTTON_LEFT:
+		if selected_fish != null:
+			_place_fish(event.position)
+		elif selected_plant != null:
+			_place_plant(event.position)
 
 func _make_placeholder_plantspecies() -> PlantSpecies:
 	var species := PlantSpecies.new()
+	species.display_name = "Aquarium Plant"
 	species.co2_consumption = 2
 	species.o2_production = 2
+	species.sprite = PLANT_SPRITESHEET
 	return species
 
 func _place_fish(pos: Vector2) -> void:
 	if selected_fish:
 		if not Aquarium._updateMoney(-selected_fish.cost):
-			
+			print("Not enough money for %s." % selected_fish.display_name)
 			return
 		var fish := fish_scene.instantiate()
 		fish.species = selected_fish
 		$EntityContainer.add_child(fish)
 		fish.global_position = pos
 		fish.reset_target()
-		
 
 func _place_plant(pos: Vector2) -> void:
-	#if not Aquarium._updateMoney(pending_fish.cost):
-		#return
+	if selected_plant == null:
+		return
+
 	if pos.x < PLANT_MIN_X \
 			or pos.x > PLANT_MAX_X \
 			or pos.y < PLANT_MIN_Y \
 			or pos.y > PLANT_MAX_Y:
 		print("Plants can only be placed in the substrate.")
 		return
-		
+
+	var plant_species := selected_plant
+	if not Aquarium._updateMoney(-plant_species.cost):
+		print("Not enough money for a plant.")
+		return
+
 	var plant := plant_scene.instantiate()
-	plant.species = _make_placeholder_plantspecies()
-	#fish.species = pending_fish
-	plant.position = pos
+	plant.species = plant_species
 	$EntityContainer.add_child(plant)
-	#pending_fish = null
+	plant.global_position = pos
 
 func _drop_food(pos: Vector2) -> void:
 	if not Aquarium._updateMoney(-FOOD_COST):
