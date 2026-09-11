@@ -11,6 +11,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j5jeb")
 
+[node name="Label" type="Label" parent="." unique_id=1377666464]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="ProgressBarO2" type="ProgressBar" parent="." unique_id=523905705]
 layout_mode = 0
 offset_right = 4.0

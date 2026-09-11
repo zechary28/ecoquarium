@@ -42,7 +42,7 @@ layout_mode = 2
 [node name="ProgressBarFood" type="ProgressBar" parent="." unique_id=1346856902]
 layout_mode = 2
 
-[node name="ShopPanel" type="Panel" parent="." unique_id=794071471]
+[node name="ShopPanel" type="VBoxContainer" parent="." unique_id=491726422]
 layout_mode = 2
 
 [node name="LabelMoney" type="Label" parent="." unique_id=1915194949]

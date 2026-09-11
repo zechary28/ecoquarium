@@ -2,19 +2,33 @@
 
 [ext_resource type="Script" uid="uid://duoucfewwdrkm" path="res://ui/select_fish_button.gd" id="1_etf66"]
 
-[node name="SelectFishButton" type="VBoxContainer" unique_id=1642324989]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etf66"]
+bg_color = Color(0.6, 0.6, 0.2, 1)
+
+[node name="SelectFishButton" type="Panel" unique_id=1377021311]
+custom_minimum_size = Vector2(0, 80)
+offset_top = 72.0
+offset_right = 1152.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_etf66")
+script = ExtResource("1_etf66")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1642324989]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_etf66")
+theme_override_constants/separation = 1
 
-[node name="LabelName" type="Label" parent="." unique_id=1020835642]
+[node name="LabelName" type="Label" parent="VBox" unique_id=1020835642]
 layout_mode = 2
 
-[node name="LabelPrice" type="Label" parent="." unique_id=778390015]
+[node name="LabelPrice" type="Label" parent="VBox" unique_id=778390015]
 layout_mode = 2
 
-[node name="LabelConsumption" type="Label" parent="." unique_id=1619834454]
+[node name="LabelConsumption" type="Label" parent="VBox" unique_id=1619834454]
 layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
