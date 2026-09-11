@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://4byhnv6kilmf"]
+[gd_scene load_steps=9 format=3 uid="uid://4byhnv6kilmf"]
 
 [ext_resource type="Script" uid="uid://cda6xjnoquqyk" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c7vri0wck0tsm" path="res://entities/fish/fish.tscn" id="2_h2yge"]
@@ -6,6 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bp8fhnw4s034f" path="res://effects/food_effect.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ci40ciwsctwyq" path="res://scenes/entity_container.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cdqvm26tc1wse" path="res://scenes/sidebar.tscn" id="6_272bh"]
+[ext_resource type="Shader" path="res://aquarium_light.gdshader" id="7_light"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tank_light"]
+shader = ExtResource("7_light")
+shader_parameter/light_level = 0.55
+shader_parameter/night_tint = Color(0.025, 0.075, 0.15, 1)
+shader_parameter/daylight_tint = Color(1.08, 1.06, 0.98, 1)
+shader_parameter/night_vignette = 0.48
 
 [node name="Main" type="Node2D" unique_id=451013774]
 script = ExtResource("1_0xm2m")
@@ -13,9 +21,18 @@ fish_scene = ExtResource("2_h2yge")
 plant_scene = ExtResource("3_1bvp3")
 food_effect_scene = ExtResource("4_lquwl")
 
-[node name="EffectContainer" type="Node2D" parent="." unique_id=760876588]
+[node name="TankView" type="Node2D" parent="."]
 
-[node name="EntityContainer" parent="." unique_id=464139563 instance=ExtResource("6_7mycd")]
+[node name="EffectContainer" type="Node2D" parent="TankView" unique_id=760876588]
+
+[node name="EntityContainer" parent="TankView" unique_id=464139563 instance=ExtResource("6_7mycd")]
+
+[node name="LightingOverlay" type="ColorRect" parent="TankView"]
+material = SubResource("ShaderMaterial_tank_light")
+offset_right = 1156.0
+offset_bottom = 652.0
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
 
 [node name="Container" type="HBoxContainer" parent="." unique_id=850596568]
 offset_right = 1149.0

@@ -42,6 +42,7 @@ func _on_icon_button_toggled(is_selected: bool) -> void:
 
 func _on_icon_button_mouse_entered() -> void:
 	is_hovered = true
+	AudioManager.play_ui_hover()
 	_refresh_visual_state()
 
 

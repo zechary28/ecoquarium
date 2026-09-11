@@ -2,6 +2,7 @@ extends Node2D
 
 signal stats_changed
 signal cash_changed(new_cash: float)
+signal light_changed(new_level: int)
 
 var lightLevel: int = 3
 var O2Level: float = 50
@@ -39,6 +40,14 @@ func _updateMoney(change: float) -> bool:
 	Money += change
 	cash_changed.emit(Money)
 	return true
+
+func set_light_level(new_level: int) -> void:
+	var clamped_level := clampi(new_level, 0, 5)
+	if clamped_level == lightLevel:
+		return
+
+	lightLevel = clamped_level
+	light_changed.emit(lightLevel)
 
 func _on_timer_timeout() -> void:
 	print("Timeout")

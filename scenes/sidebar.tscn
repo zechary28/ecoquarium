@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdqvm26tc1wse"]
+[gd_scene load_steps=15 format=3 uid="uid://cdqvm26tc1wse"]
 
 [ext_resource type="Script" uid="uid://buj2qpuey3ks3" path="res://ui/sidebar.gd" id="1_iqt6p"]
 [ext_resource type="Script" uid="uid://bsv4p0808adjr" path="res://ui/light_bar.gd" id="2_rx5q4"]
 [ext_resource type="Texture2D" path="res://assets/ui/status/aquarium_status_panel.png" id="3_panel"]
 [ext_resource type="FontFile" path="res://assets/PixeltaRegular-lxoDw.ttf" id="4_font"]
+[ext_resource type="Texture2D" path="res://assets/ui/shop_icons/coin.png" id="5_coin"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empty"]
 bg_color = Color(0, 0, 0, 0)
@@ -47,6 +48,86 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_economy"]
+content_margin_left = 6.0
+content_margin_top = 3.0
+content_margin_right = 6.0
+content_margin_bottom = 3.0
+bg_color = Color(0.31, 0.21, 0.13, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08, 0.045, 0.025, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_light_button"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0.18, 0.27, 0.31, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.66, 0.68, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_light_hover"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0.28, 0.42, 0.45, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.78, 0.91, 0.82, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_light_pressed"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 1.0
+bg_color = Color(0.1, 0.17, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.34, 0.52, 0.55, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_light_disabled"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0.09, 0.12, 0.14, 0.7)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
 [node name="Sidebar" type="VBoxContainer" unique_id=1907890047]
 custom_minimum_size = Vector2(128, 100)
 anchors_preset = 15
@@ -62,22 +143,117 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LightBar" type="HBoxContainer" parent="." unique_id=1211593003]
+[node name="EconomyPanel" type="PanelContainer" parent="TopSpacer"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 43.0
+offset_right = 70.0
+offset_bottom = 76.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_economy")
+
+[node name="EconomyContent" type="HBoxContainer" parent="TopSpacer/EconomyPanel"]
 layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="CoinIcon" type="TextureRect" parent="TopSpacer/EconomyPanel/EconomyContent"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+tooltip_text = "Current funds"
+texture = ExtResource("5_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MoneyValue" type="Label" parent="TopSpacer/EconomyPanel/EconomyContent"]
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+tooltip_text = "Current funds"
+theme_override_colors/font_color = Color(1, 0.79, 0.27, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.02, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 14
+text = "0"
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="TopSpacer/EconomyPanel/EconomyContent"]
+custom_minimum_size = Vector2(2, 18)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.12, 0.07, 0.035, 1)
+
+[node name="BeautyLabel" type="Label" parent="TopSpacer/EconomyPanel/EconomyContent"]
+custom_minimum_size = Vector2(35, 18)
+layout_mode = 2
+tooltip_text = "Aquarium beauty determines passive income"
+theme_override_colors/font_color = Color(0.85, 0.92, 0.78, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 8
+text = "BEAUTY"
+vertical_alignment = 1
+
+[node name="BeautyValue" type="Label" parent="TopSpacer/EconomyPanel/EconomyContent"]
+custom_minimum_size = Vector2(18, 20)
+layout_mode = 2
+tooltip_text = "Aquarium beauty determines passive income"
+theme_override_colors/font_color = Color(0.66, 0.91, 0.72, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.04, 0.02, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 14
+text = "0"
+vertical_alignment = 1
+
+[node name="LightBar" type="HBoxContainer" parent="." unique_id=1211593003]
+custom_minimum_size = Vector2(128, 28)
+layout_mode = 2
+theme_override_constants/separation = 5
 alignment = 1
 script = ExtResource("2_rx5q4")
 
 [node name="ButtonDown" type="Button" parent="LightBar" unique_id=2131143343]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+tooltip_text = "Decrease aquarium light"
+theme_override_colors/font_color = Color(0.85, 0.94, 0.95, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_light_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_light_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_light_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_light_disabled")
+text = "−"
 
 [node name="Label" type="Label" parent="LightBar" unique_id=195400838]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(68, 24)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.91, 0.82, 1)
+theme_override_colors/font_shadow_color = Color(0.03, 0.055, 0.07, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 10
+text = "LIGHT  3/5"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonUp" type="Button" parent="LightBar" unique_id=1913447378]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+tooltip_text = "Increase aquarium light"
+theme_override_colors/font_color = Color(0.85, 0.94, 0.95, 1)
+theme_override_fonts/font = ExtResource("4_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_light_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_light_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_light_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_light_disabled")
+text = "+"
 
 [node name="StatusPanel" type="Control" parent="."]
 custom_minimum_size = Vector2(128, 128)
@@ -168,12 +344,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopPanel" type="VBoxContainer" parent="." unique_id=491726422]
-layout_mode = 2
-
-[node name="LabelMoney" type="Label" parent="." unique_id=1915194949]
-layout_mode = 2
-
-[node name="LabelBeauty" type="Label" parent="." unique_id=360602010]
 layout_mode = 2
 
 [connection signal="pressed" from="LightBar/ButtonDown" to="LightBar" method="_on_button_down_pressed"]
