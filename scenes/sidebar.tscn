@@ -227,7 +227,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_light_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_light_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_light_pressed")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_light_disabled")
-text = "−"
+text = "-"
 
 [node name="Label" type="Label" parent="LightBar" unique_id=195400838]
 custom_minimum_size = Vector2(68, 24)
