@@ -6,7 +6,7 @@ signal cash_changed(new_cash: int)
 var lightLevel: int = 3
 var O2Level: int = 50
 var CO2Level: int = 50
-var FoodLevel: int = 0
+var FoodLevel: int = 50
 var Money: int = 50
 var Beauty: int = 0
 const REVENUE_MULTIPLIER: int = 1

@@ -8,6 +8,8 @@ extends Node2D
 var selected_fish: FishSpecies = null
 const CATALOG := preload("res://resources/species_catalog.tres")
 const SELECT_FISH_BUTTON_SCENE := preload("res://ui/select_fish_button.tscn")
+const SPECIES_STATUS_BAR := preload("res://ui/species_status_bar.tscn")
+
 const PLANT_MIN_Y := 535.0
 const PLANT_MAX_Y := 580.0
 const PLANT_MIN_X := 40.0
@@ -21,6 +23,12 @@ func _ready() -> void:
 		sfb.species = species
 		sfb.fish_selected.connect(_on_fish_selected)
 		$Container/MarginContainer/Sidebar/ShopPanel.add_child(sfb)
+
+	#create all status bars
+	for species in CATALOG.fish_species:
+		var ssb = SPECIES_STATUS_BAR.instantiate()
+		ssb.species = species
+		$Container/MarginContainer/SpeciesStatusBars.add_child(ssb)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

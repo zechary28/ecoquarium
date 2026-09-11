@@ -29,9 +29,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+[node name="SpeciesStatusBars" type="VBoxContainer" parent="Container/MarginContainer" unique_id=1707065527]
+layout_mode = 2
+
 [node name="Sidebar" parent="Container/MarginContainer" unique_id=1907890047 instance=ExtResource("6_272bh")]
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="Container" unique_id=792658444]
+[node name="VSeparator2" type="VSeparator" parent="Container" unique_id=1266624702]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2

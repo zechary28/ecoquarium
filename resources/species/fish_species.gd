@@ -15,16 +15,15 @@ class_name FishSpecies
 @export var sprite: Texture2D
 @export var sprite_frames: SpriteFrames
 
-# 0 at the threshold boundary, 1 at the extreme (either O2=0 or O2=max)
-func margin_fraction_o2(currentO2: int, max_value: int = 100) -> float:
-	if currentO2 >= o2_min:
-		return (currentO2 - o2_min) / (max_value - o2_min)
+func _margin_fraction(current: float, threshold: float, max_value: float = 100.0) -> float:
+	if current >= threshold:
+		var healthy_range := max_value - threshold
+		return (current - threshold) / healthy_range if healthy_range > 0.0 else 1.0
 	else:
-		return (o2_min - currentO2) / o2_min
+		return (threshold - current) / threshold if threshold > 0.0 else 0.0
 
-# 0 at the threshold boundary, 1 at the extreme (either O2=0 or O2=max)
-func margin_fraction_food(currentFood: int, max_value: int = 100) -> float:
-	if currentFood >= food_min:
-		return (currentFood - food_min) / (max_value - food_min)
-	else:
-		return (food_min - currentFood) / food_min
+func margin_fraction_o2(current_o2: float, max_value: float = 100.0) -> float:
+	return _margin_fraction(current_o2, o2_min, max_value)
+
+func margin_fraction_food(current_food: float, max_value: float = 100.0) -> float:
+	return _margin_fraction(current_food, food_min, max_value)
