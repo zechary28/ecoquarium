@@ -24,5 +24,5 @@ func _update_species_bar_food(currentFood: int) -> void:
 	$ProgressBarFood.add_theme_color_override("fill_color", Color.GREEN if healthy else Color.RED)
 
 func _on_stats_changed() -> void:
-	_update_species_bar_food(Aquarium.O2Level)
+	_update_species_bar_o2(Aquarium.O2Level)
 	_update_species_bar_food(Aquarium.FoodLevel)

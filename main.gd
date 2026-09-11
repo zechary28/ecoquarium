@@ -28,7 +28,7 @@ func _ready() -> void:
 	for species in CATALOG.fish_species:
 		var ssb = SPECIES_STATUS_BAR.instantiate()
 		ssb.species = species
-		$Container/MarginContainer/SpeciesStatusBars.add_child(ssb)
+		$Container/MarginContainer2/SpeciesStatusBars.add_child(ssb)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
