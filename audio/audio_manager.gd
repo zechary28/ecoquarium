@@ -22,6 +22,7 @@ extends Node
 
 func _ready() -> void:
 	# Starting from the autoload keeps music alive and independent of scene changes.
+	music_player.finished.connect(_on_music_finished)
 	start_aquarium_audio()
 
 
@@ -33,6 +34,13 @@ func start_aquarium_audio() -> void:
 func stop_aquarium_audio() -> void:
 	music_player.stop()
 	ambience_player.stop()
+
+
+func _on_music_finished() -> void:
+	# Browser exports can occasionally ignore a stream's imported loop metadata.
+	# Restarting on `finished` keeps the music continuous as a safe fallback.
+	if music_player.stream != null:
+		music_player.play()
 
 
 func play_ui_hover() -> void:
