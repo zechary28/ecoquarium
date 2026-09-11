@@ -8,6 +8,8 @@ var O2Level: int = 50
 var CO2Level: int = 50
 var FoodLevel: int = 0
 var Money: int = 50
+var Beauty: int = 0
+const REVENUE_MULTIPLIER: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -64,11 +66,11 @@ func _on_timer_timeout() -> void:
 	O2Level = clampf(O2Level + o2_delta, 0, 100)
 	CO2Level = clampf(CO2Level + co2_delta, 0, 100)
 	FoodLevel = clampf(FoodLevel + food_delta, 0, 100)
+	Beauty = total_beauty
 	print("O2 level changed by %d to: %d" % [o2_delta, O2Level])
 	print("CO2 level changed by %d to: %d" % [co2_delta, CO2Level])
 	print("Food level changed by %d to: %d" % [food_delta, FoodLevel])
-	#score = total_beauty
 
-	#Money += score * REVENUE_MULTIPLIER * TICK_INTERVAL
+	Money += total_beauty * REVENUE_MULTIPLIER
 	cash_changed.emit()
 	stats_changed.emit()

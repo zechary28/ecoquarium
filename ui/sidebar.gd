@@ -28,6 +28,7 @@ func _on_stats_changed() -> void:
 	$ProgressBarO2.value = Aquarium.O2Level
 	$ProgressBarCO2.value = Aquarium.CO2Level
 	$ProgressBarFood.value = Aquarium.FoodLevel
+	$LabelBeauty.text = "Beauty: " + str(Aquarium.Beauty)
 
 func _on_cash_changed() -> void:
 	$LabelMoney.text = "Money: " + str(Aquarium.Money)
